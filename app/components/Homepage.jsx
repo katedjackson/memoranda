@@ -1,68 +1,38 @@
 'use strict'
 
-import React from 'react'
+import React, { PropTypes } from 'react'
 import {Link} from 'react-router';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-export default () => {
+const Homepage = (props) => {
   return (
-      <Grid fluid={true}>
-        <Row className="show-grid">
-          <Col md={12} className="home-pic promo">
-                <Row className="show-grid">
-                  <Col md={9}>
-                    <h1 id="promo">TAKE 40% OFF EVERYTHING</h1>
-                  </Col>
-                  <Col md={3}>
-                    <h1 id="promoCode">Promo Code: TAKE40</h1>
-                  </Col>
-                </Row>
-                <Row className="show-grid bottomRow">
-                  <Col md={6}>
-                      <h1 id="peopleSale">SHOP PEOPLE</h1>
-                  </Col>
-                  <Link to={'/sale/dog'}>
-                    <Col md={6}>
-                        <h1 id="dogSale">SHOP DOG</h1>
-                    </Col>
-                  </Link>
-                </Row>
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <Col md={6}>
-            <Link to={ '/products/women'}>
-              <div className="home-pic women">
-                <h1>Women</h1>
-              </div>
-            </Link>
-          </Col>
-          <Col md={6}>
-            <Link to={ '/products/men'}>
-              <div className="home-pic men">
-                <h1>Men</h1>
-              </div>
-            </Link>
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <Col md={12}>
-            <Link to={ '/products/dogs'}>
-              <div className="home-pic dogs">
-                <h1>Dogs</h1>
-              </div>
-            </Link>
-          </Col>
-        </Row>
-        <Row className="show-grid">
-          <Col md={12}>
-            <Link to={ '/products/kids'}>
-              <div className="home-pic kids">
-                <h1>Kids</h1>
-              </div>
-            </Link>
-          </Col>
-        </Row>
-      </Grid>
+    <Grid fluid={true}>
+      <Row>
+        <Col xs={12} sm={12} md={10} lg={10}>
+          <h3>Notes</h3>
+          <Row>
+            {
+              props.notes.map(note => (
+                <Col
+                  className="note"
+                  key={ note.id }
+                  xs={12} sm={6} md={4} lg={4}>
+                  <h5>{note.title}</h5>
+                  <h6>{note.tags}</h6>
+                  <p>{note.message}</p>
+                  <Link to={`/notes/${note.id}`}>Edit</Link>
+                </Col>
+              ))
+            }
+          </Row>
+        </Col>
+      </Row>
+    </Grid>
   );
 }
+
+Homepage.propTypes = {
+  notes: PropTypes.array.isRequired
+}
+
+export default Homepage

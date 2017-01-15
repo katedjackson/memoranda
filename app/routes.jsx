@@ -8,18 +8,7 @@ import store from './store'
 
 import App from './components/App'
 import Home from './components/Homepage'
-import LoginSignup from './components/LoginSignup'
-
-import ProductsContainer from './containers/ProductsContainer'
-
-import {getProductsByTag} from './action-creators/products'
-
-
-const onProductsContainerEnter = function (nextRouterState) {
-  const tag = nextRouterState.params.tag;
-  store.dispatch(getProductsByTag(tag));
-};
-
+import NoteForm from './components/NoteForm'
 
 export default () => {
   return (
@@ -27,8 +16,8 @@ export default () => {
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
-          <Route path="/products/:tag" component={ProductsContainer} onEnter={onProductsContainerEnter} />
-          <Route path="/account/login" component={LoginSignup}/>
+          <Route path="/newnote" component={NoteForm}/>
+          <Route path="/:id" component={NoteForm}/>
         </Route>
       </Router>
     </Provider>
