@@ -4,10 +4,7 @@ const db = require('APP/db')
 const api = module.exports = require('express').Router()
 
 api
-  .use('/auth', require('./auth'))
-  .use('/users', require('./users'))
-  .use('/products', require('./routes/products/product-router'))
-  .use('/cart', require('./routes/orders/order-router'))
+  .use('/notes', require('./routes/notes'))
 
 // Send along any errors
 api.use((err, req, res, next) => {
